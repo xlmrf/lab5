@@ -19,11 +19,11 @@ function encode($text){
   for($i = 0; $i < count($asciiArray); $i++) {
     $binaryValue = sprintf("%08b", $asciiArray[$i]);
     for ($j = 0; $j < strlen($binaryValue); $j++) {
-      $tripledStr .= str_repeat($binaryValue[$j], 3);
+      $bits .= str_repeat($binaryValue[$j], 3);
     }
   }
   
-  return $tripledStr;
+  return $bits;
 }
 
 function decode($bits){
@@ -42,12 +42,12 @@ function decode($bits){
   }
   
   $bytes_parts = str_split($bytes,8);
-  $new_ascii = '';
+  $word = '';
   foreach ($bytes_parts as $binary) {
     $decimalValue = bindec($binary);
-    $new_ascii .= chr($decimalValue);
+    $word .= chr($decimalValue);
   }
 
-  return $new_ascii;
+  return $word;
 }
 
